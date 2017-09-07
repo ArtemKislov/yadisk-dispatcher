@@ -1,9 +1,6 @@
-import axios from 'Services/axios';
-
-export const GET_DIR_REQUEST = '[Directory] Get Directory Data Request';
-export const GET_DIR_REQUEST_SUCCESS = '[Directory] Get Directory Data Success';
-
-const cache = new Map();
+export const GET_DIR_CONTENT_REQUEST = '[Directory] Get Directory Content Request';
+export const GET_DIR_CONTENT_REQUEST_SUCCESS = '[Directory] Get Directory Content Success';
+export const GET_DIR_CONTENT_REQUEST_ERROR = '[Directory] Get Directory Content Error';
 
 const initialState = {
   items: [],
@@ -12,11 +9,11 @@ const initialState = {
 export default function diskReducer(state = initialState, action) {
   const { payload } = action;
   switch (action.type) {
-    case GET_DIR_REQUEST: {
+    case GET_DIR_CONTENT_REQUEST: {
       return state;
     }
-    case GET_DIR_REQUEST_SUCCESS: {
-      return { ...state, ...payload.data._embedded };
+    case GET_DIR_CONTENT_REQUEST_SUCCESS: {
+      return { ...state, ...payload.content._embedded };
     }
 
     default: return state;
@@ -24,14 +21,5 @@ export default function diskReducer(state = initialState, action) {
 }
 
 export const asyncGetDirRequest = (path = '/') => {
-  return (dispatch) => {
-    // if (cache.has(path)) return dispatch({ type: GET_DIR_REQUEST_SUCCESS, payload: cache.get(path) });
-    dispatch({ type: GET_DIR_REQUEST });
-    axios().get(`/resources?path=${path}&preview_size=M`)
-      .then((payload) => {
-        cache.set(path, payload);
-        dispatch({ type: GET_DIR_REQUEST_SUCCESS, payload });
-      })
-      .catch(error => console.log(error));
-  }
-}
+  return { type: GET_DIR_CONTENT_REQUEST, payload: { path } };
+};

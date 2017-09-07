@@ -9,6 +9,7 @@ const config = {
   devtool: 'cheap-module-eval-source-map',
 
   entry: [
+    'babel-polyfill',
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
@@ -26,6 +27,7 @@ const config = {
     alias: {
       Components: resolve(__dirname, './app/components'),
       Containers: resolve(__dirname, './app/containers'),
+      Constants: resolve(__dirname, './app/constants'),
       Services: resolve(__dirname, './app/services'),
       Config: resolve(__dirname, './app/config'),
       Redux: resolve(__dirname, './app/redux'),

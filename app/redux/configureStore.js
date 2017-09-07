@@ -1,10 +1,13 @@
 import { createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
-import thunkMiddleware from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 import rootReducer from './reducers';
+import rootSaga from './sagas';
 
 export default function configureStore(initialState) {
   const logger = createLogger();
-  const store = createStore(rootReducer, initialState, applyMiddleware(thunkMiddleware, logger));
+  const sagaMiddleware = createSagaMiddleware();
+  const store = createStore(rootReducer, initialState, applyMiddleware(sagaMiddleware, logger));
+  sagaMiddleware.run(rootSaga);
   return store;
 }

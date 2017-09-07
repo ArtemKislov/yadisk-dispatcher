@@ -1,5 +1,5 @@
 import { store } from 'Redux';
-import { browserHistory } from 'react-router-dom';
+import history from 'Services/history';
 import { asyncGetDirRequest } from 'Redux/ducks/disk';
 
 export function checkAuth(path) {
@@ -14,5 +14,5 @@ export function checkAuth(path) {
 export function onAuthSuccess() {
   const token = /access_token=([^&]+)/.exec(document.location.hash)[1];
   localStorage.setItem('token', token);
-  browserHistory.push('/');
+  history.push('/');
 }

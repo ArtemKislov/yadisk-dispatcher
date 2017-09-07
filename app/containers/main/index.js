@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Grid, Row } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import './style.scss';
-import Navigation from '../../components/common/navigation';
-import Breadcrumbs from '../../components/common/breadcrumbs';
+import Navigation from 'Components/common/navigation';
+import Breadcrumbs from 'Components/common/breadcrumbs';
+import Footer from 'Components/common/footer';
 import Directory from './elements/directory';
 import File from './elements/file';
+import './style.scss';
 
 class Main extends Component {
   render() {
@@ -21,6 +22,8 @@ class Main extends Component {
         />;
     });
 
+    const empty = !elements.length && (<h3>Directory is empty</h3>);
+
     return (
       <div>
         <Navigation />
@@ -28,11 +31,10 @@ class Main extends Component {
           <Breadcrumbs data={decodeURI(this.props.location.pathname)} />
           <Row className="directory">
             {elements}
+            {empty}
           </Row>
         </Grid>
-        <div className="footer">
-          Created by Artem Kislov
-        </div>
+        <Footer />
       </div>
     );
   }

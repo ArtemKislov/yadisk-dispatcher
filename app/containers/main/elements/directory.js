@@ -2,9 +2,11 @@ import React from 'react';
 import { Col } from 'react-bootstrap';
 import { Icon } from 'react-fa';
 import history from 'Services/history';
+import yaDiskConst from 'Constants/yaDisk';
 import PropTypes from 'prop-types';
 
 const Directory = (props) => {
+  const prefixRegExp = new RegExp(`^${yaDiskConst.pathPrefix}`, 'g');
   return (
     <Col
       xs={6}
@@ -12,8 +14,8 @@ const Directory = (props) => {
       md={2}
       lg={2}
       className="mb-20"
-      onDoubleClick={() => history.push(props.path.substring(5))}
-      onTouchStart={() => history.push(props.path.substring(5))}
+      onDoubleClick={() => history.push(props.path.replace(prefixRegExp, ''))}
+      onTouchStart={() => history.push(props.path.replace(prefixRegExp, ''))}
     >
       <div className="directory-element">
         <div className="directory-element-img">
