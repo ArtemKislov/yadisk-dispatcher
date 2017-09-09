@@ -1,0 +1,42 @@
+.directory{
+  display: flex;
+  flex-wrap:wrap;
+  align-items: stretch;
+  padding-bottom: 30px;
+}
+
+.directory-element{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  border:1px solid #eee;
+  padding: 10px;
+  border-radius:3px;
+  cursor: pointer;
+
+  &:hover{
+    border-color:#cecece;
+  }
+}
+
+.directory-element-img{
+  font-size: 28px;
+}
+.directory-element-name{
+  word-wrap: break-word;
+}
+
+.footer{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  line-height: 20px;
+  background: #eeeeee;
+  border-top:1px solid #dedede;
+  text-align: right;
+  padding: 3px 10px;
+  font-size: 10px;
+}

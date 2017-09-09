@@ -1,0 +1,12 @@
+@import './includes.scss';
+$color: #262828;
+
+body {
+  color: $color;
+  position: relative;
+  min-height:100vh;
+}
+
+.mb-20{
+  margin-bottom: 20px;
+}
